@@ -1,0 +1,41 @@
+<form name="user-form" (submit)="addUser()" #userForm="ngForm">
+  <div class="form-group">
+    <label for="firstName">FirstName</label>
+    <input type="text" #userFirstName="ngModel" required minlength="4" [(ngModel)]="user.firstName" name="firstName"
+           class="form-control" id="firstName" placeholder="Enter First Name">
+    <div *ngIf="userFirstName.errors && (userFirstName.dirty || userFirstName.touched)" class="error">
+      <p [hidden]="!userFirstName.errors.required">First Name is required</p>
+      <p [hidden]="!userFirstName.errors.minlength">First Name must be of 4 or more chars</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">LastName</label>
+    <input type="text" #userLastName="ngModel" required minlength="4" [(ngModel)]="user.lastName" name="lastName"
+           class="form-control" id="lastName" placeholder="Enter Last Name">
+    <div *ngIf="userLastName.errors && (userLastName.dirty || userLastName.touched)" class="error">
+      <p [hidden]="!userLastName.errors.required">Last Name is required</p>
+      <p [hidden]="!userLastName.errors.minlength">Last Name must be of 4 or more chars</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" email #userEmail="ngModel" [(ngModel)]="user.email" name="email" class="form-control"
+           id="email" placeholder="Enter Email">
+    <div *ngIf="userEmail.errors && (userEmail.dirty || userEmail.touched)" class="error">
+      <p [hidden]="!userEmail.errors.email">A valid email is required</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="state">State</label>
+    <select id="state" #userState="ngModel" required class="form-control" [(ngModel)]="user.state"
+            name="state">
+      <option>Select Your State</option>
+      <option *ngFor="let state of states" [value]="state">{{state}}</option>
+    </select>
+    <div *ngIf="userState.errors && (userState.dirty || userState.touched)" class="error">
+      <p [hidden]="!userState.errors.required">State is required</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+</form>

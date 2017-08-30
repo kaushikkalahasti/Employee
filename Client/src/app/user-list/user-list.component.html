@@ -1,0 +1,27 @@
+<a [routerLink]="['/add-user']" class="btn btn-primary">Add User</a>
+<hr>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>State</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.firstName}} {{user.lastName}}</td>
+    <td>{{user.email}}</td>
+      <td [ngSwitch]="user.state">
+      <p *ngSwitchCase="'IL'">Illinois</p>
+      <p *ngSwitchCase="'NY'">New York</p>
+      <p *ngSwitchCase="'NJ'">New Jersey</p>
+        <p *ngSwitchCase="'TN'">Tenesse</p>
+        <p *ngSwitchCase="'FL'">Florida</p>
+        <p *ngSwitchCase="'GA'">Georgia</p>
+        <p *ngSwitchCase="'VA'">Virginia</p>
+        <p *ngSwitchDefault>Other</p>
+      </td>
+  </tr>
+  </tbody>
+</table>
